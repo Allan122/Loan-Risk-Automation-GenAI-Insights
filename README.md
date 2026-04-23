@@ -3,7 +3,7 @@ This repository contains an end-to-end automation solution for financial risk an
 ## Project Structure
  * **/workflows**: Contains Workflow1.json (Executive Reporting) and Workflow2.json (Loan Explanation).
  * **/screenshots**: Visual evidence of successful workflow execution and green-check verification.
-## 🛠️ Tech Stack
+## Tech Stack
  * **Automation:** n8n
  * **AI Model:** LLaMA 3.3 70B (via Groq/OpenAI Node)
  * **Data Handling:** JavaScript (n8n Code Node)
