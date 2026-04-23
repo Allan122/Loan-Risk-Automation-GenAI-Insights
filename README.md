@@ -1,5 +1,3 @@
-<img width="1799" height="851" alt="Display Output" src="https://github.com/user-attachments/assets/99dd8d7d-ac94-4ea6-af32-829f9fc2b6a8" />
-<img width="1296" height="320" alt="Workflow 1" src="https://github.com/user-attachments/assets/09402ab2-d635-47e1-a02b-ee60b076302e" />
 # Loan Risk Automation & GenAI Insights
 This repository contains an end-to-end automation solution for financial risk analysis. It leverages **n8n** for workflow orchestration and **GenAI (LLaMA 3.3 70B)** to transform raw loan data into actionable business intelligence and human-readable transparency.
 ## Project Structure
