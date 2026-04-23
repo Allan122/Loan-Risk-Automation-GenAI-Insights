@@ -1,0 +1,141 @@
+{
+  "name": "loan risk summary",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f1811fa1-a4fa-4e1b-bc1a-620087005301",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    \"Total_Active_Loans\": 70000,\n    \"Percentage_Bad_Loans\": \"12.8%\",\n    \"High_Risk_Grades_DEF\": \"18.4%\",\n    \"Avg_Interest_Rate_High_Risk\": \"21.5%\",\n    \"Region_Default_Trends\": \"Highest defaults observed in Leinster and Munster regions.\",\n    \"Key_Driver\": \"Bad loans are heavily concentrated among borrowers with high debt-to-income (DTI) ratios.\"\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5d9d1cf9-393c-403b-9c14-7c5e0c78238f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama-3.3-70b-versatile",
+          "mode": "list",
+          "cachedResultName": "LLAMA-3.3-70B-VERSATILE"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are the Chief Risk Officer. Based on the following loan portfolio metrics, write a short, professional email summarizing the risk exposure, highlighting concerning trends, and explaining the patterns in simple language for the executive team.\n​Data:\nTotal Loans: {{$json.Total_Active_Loans}}\nBad Loans: {{$json.Percentage_Bad_Loans}}\nHigh Risk Exposure: {{$json.High_Risk_Grades_DEF}}\nRegion Trends: {{$json.Region_Default_Trends}}\nDrivers: {{$json.Key_Driver}}\n\n\n​\"Please format your entire response in HTML. Use <br><br> for paragraph breaks, <b> for bold text, and <ul><li> for bullet points. Do not use Markdown or asterisks.\"\n\n​\"Always end the email exactly like this: <br><br>Best regards,<br>Chief Risk Officer\""
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "store": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "1d106423-2ba4-4427-a492-13fa72b5c33f",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "M269lKghHOBFnVcb",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "allanalex143@gmail.com",
+        "subject": "Daily Portfolio Risk Report",
+        "message": "={{ $json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        816,
+        0
+      ],
+      "id": "23462575-7725-46e9-951d-915a7557b521",
+      "name": "Send a message",
+      "webhookId": "3867531d-f7dd-442f-a7e9-0b81bb1ab78a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mkJ4mfrxUdIaznT1",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9fda5ff6-63d8-4462-99b2-08870a6ed895",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fb21a8e5ffc2ae62fde5e64bb846a47e8e995a613e1063eef5fe30749498054c"
+  },
+  "id": "5pC17QGUtoZiiQGM",
+  "tags": []
+}
