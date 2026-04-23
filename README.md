@@ -1,11 +1,6 @@
 # Loan Risk Automation & GenAI Insights
 This repository contains an end-to-end automation solution for financial risk analysis. It leverages **n8n** for workflow orchestration and **GenAI (LLaMA 3.3 70B)** to transform raw loan data into actionable business intelligence and human-readable transparency.
 
-## Dataset
-The dataset used for this project has been cleaned and prepared for analysis.
-Source (Cleaned CSV):\
-https://docs.google.com/spreadsheets/d/1kfolJAJ9WY78nzh_qsqqex6QNeg-GBfR/edit?usp=sharing&ouid=112605916501977295854&rtpof=true&sd=true
-
 ## Project Structure
  * **/workflows**: Contains Workflow1.json (Executive Reporting) and Workflow2.json (Loan Explanation).
  * **/screenshots**: Visual evidence of successful workflow execution and green-check verification.
@@ -15,6 +10,11 @@ https://docs.google.com/spreadsheets/d/1kfolJAJ9WY78nzh_qsqqex6QNeg-GBfR/edit?us
  * **Data Handling:** JavaScript (n8n Code Node)
  * **API Integration:** REST API (HTTP Request Node / Webhooks)
  * **Testing:** httpbin.org (Post-request verification)
+
+## Dataset
+The dataset used for this project has been cleaned and prepared for analysis.
+Source (Cleaned CSV):\
+https://docs.google.com/spreadsheets/d/1kfolJAJ9WY78nzh_qsqqex6QNeg-GBfR/edit?usp=sharing&ouid=112605916501977295854&rtpof=true&sd=true
 ## Workflows & GenAI Usage
 ### 🔹 Workflow 1: Executive Risk Reporting
 **Problem Statement:** Manual monitoring of loan portfolios is inefficient. Leadership needs immediate, high-level summaries of risk exposure without digging through raw datasets.
