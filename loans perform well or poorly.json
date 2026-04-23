@@ -1,0 +1,140 @@
+{
+  "name": "loans perform well or poorly",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    \"Loan_ID\": \"L-9942\",\n    \"Grade\": \"E\",\n    \"Interest_Rate\": \"21.5%\",\n    \"Debt_to_Income_Ratio\": \"42%\",\n    \"Income_Category\": \"Low (0-50k)\",\n    \"Employment_Length\": \"1 year\",\n    \"Purpose\": \"Debt Consolidation\",\n    \"Status\": \"Bad Loan\"\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "6378bd10-4448-4b56-8ccb-2588d0ee2559",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cb2492f8-caa6-4fcd-a238-4175b3e53be7",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4c916a3f-7f78-452f-a676-46920ed524ea",
+      "name": "Webhook",
+      "webhookId": "cb2492f8-caa6-4fcd-a238-4175b3e53be7"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama-3.3-70b-versatile",
+          "mode": "list",
+          "cachedResultName": "LLAMA-3.3-70B-VERSATILE"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a Risk Analysis AI. A user has asked: \"Why is this loan classified as a Bad Loan?\"\n​Review the borrower's profile below and provide a short, human-readable explanation of the risk factors. Compare these factors to what a \"Good Loan\" typically looks like.\n​Loan Profile:\nGrade: {{$json.Grade}}\nInterest Rate: {{$json.Interest_Rate}}\nDTI: {{$json.Debt_to_Income_Ratio}}\nIncome: {{$json.Income_Category}}\nEmployment: {{$json.Employment_Length}}\n\n​\"Please format your entire response in HTML. Use <br><br> for paragraph breaks, <b> for bold text, and <ul><li> for bullet points. Do not use Markdown or asterisks.\""
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "store": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "f7e246c0-6783-400c-b518-6ada9e0a2a53",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "M269lKghHOBFnVcb",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "allanalex143@gmail.com",
+        "subject": "Risk Analysis: Loan Explanation",
+        "message": "={{ $json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        976,
+        0
+      ],
+      "id": "cf7df685-2ce1-4c49-b550-99c6caeef3f9",
+      "name": "Send a message",
+      "webhookId": "64d80219-adf7-4f21-9d55-fec9268aff00",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "mkJ4mfrxUdIaznT1",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "75c0b72d-1eb2-4a92-8bb2-5cacdbdd87a2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fb21a8e5ffc2ae62fde5e64bb846a47e8e995a613e1063eef5fe30749498054c"
+  },
+  "id": "GbFyK3fafMWGjc8y",
+  "tags": []
+}
