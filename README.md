@@ -28,8 +28,8 @@ This repository contains an end-to-end automation solution for financial risk an
 > 
  1. **Workflow 1 Overview:** <img width="1311" height="380" alt="Workflow 1" src="https://github.com/user-attachments/assets/14380acb-7813-45ed-839a-a8059c28ca35" />
  2. **Workflow 2 Overview:** <img width="1464" height="433" alt="Workflow 2" src="https://github.com/user-attachments/assets/00d99c52-38aa-47cd-abab-62641e388bc6" />
- 3. **Workflow 1 Sample AI Output:** 
- 4. **Workflow 1 Sample AI Output:** <img width="1798" height="843" alt="Sample AI Output Workflow 2" src="https://github.com/user-attachments/assets/3e461c3c-07c1-47ce-870d-a5ef7b47408d" />
+ 3. **Workflow 1 Sample AI Output:** <img width="1839" height="857" alt="Sample Output Workflow 1" src="https://github.com/user-attachments/assets/71904979-78fc-44f1-b29d-05b1ab1a3893" />
+ 4. **Workflow 2 Sample AI Output:** <img width="1798" height="843" alt="Sample AI Output Workflow 2" src="https://github.com/user-attachments/assets/3e461c3c-07c1-47ce-870d-a5ef7b47408d" />
 
 ## Key Insights
  * **Scalability:** By using **HTTP Request** nodes instead of basic email nodes, these workflows can be integrated into any modern ERP or CRM system.
